@@ -1,0 +1,28 @@
+html, body {
+  padding: 0;
+  margin: 0;
+}
+
+.wrapper {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #F6F6F6;
+}
+
+.reg_container {
+  position: relative;
+  height: 70%;
+  width: 30%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  background-color: white;
+  border-radius: 16px;
+}
+
+/*# sourceMappingURL=style.css.map */
