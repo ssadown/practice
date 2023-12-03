@@ -217,6 +217,7 @@ nav {
   align-items: center;
   background-color: #373745;
   border-radius: 16px;
+  cursor: pointer;
 }
 .field-play__status p {
   width: 100%;
@@ -246,8 +247,12 @@ nav {
   color: white;
 }
 
-.winner {
-  background-color: green;
+.winner-cross {
+  background-color: #CFEDE6;
+}
+
+.winner-circle {
+  background-color: #F3BBD0;
 }
 
 /*# sourceMappingURL=style.css.map */

@@ -8,7 +8,7 @@ const Timer = (props) => {
         let interval
         if (time.seconds > 0) {
             interval = setInterval(() => {
-                time.setSeconds((prevSeconds) => prevSeconds -1)
+                time.setSeconds((prevSeconds) => prevSeconds - 1)
             }, 1000)
         }
         else {

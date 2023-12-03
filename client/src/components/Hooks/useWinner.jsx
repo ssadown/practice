@@ -22,7 +22,7 @@ export const useWinner = (squares) => {
             squares[a].figure === squares[b].figure &&
             squares[a].figure === squares[c].figure
         ) {
-        return {imageWinner: squares[a].figure, winningCells: [a,b,c]}; // Возвращаем символ победителя
+        return squares[a].figure; // Возвращаем символ победителя
         }
     }
     // Проверяем на ничью

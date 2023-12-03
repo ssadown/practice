@@ -25,7 +25,6 @@ const App = () => {
 
   return (
     !isLogin ?
-    <NavContext.Provider value={{navId, setNavId}}>
       <ErrorContext.Provider value={{error, setError}}>
         <AuthContext.Provider value={{isLogin, setLogin}}>
           <BrowserRouter>
@@ -36,7 +35,6 @@ const App = () => {
           </BrowserRouter>
         </AuthContext.Provider>
       </ErrorContext.Provider>
-    </NavContext.Provider>
     :
   <SecondsContext.Provider value={{seconds, setSeconds}}>
     <GameContext.Provider value={{xIsNext, setXIsNext}}>

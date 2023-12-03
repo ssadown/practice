@@ -5,6 +5,7 @@ import Timer from './helpers/Timer';
 import { usePlayerMove } from './Hooks/usePlayerMove';
 import { useWinner } from './Hooks/useWinner';
 import { useClearSquares } from './Hooks/useClearSquares';
+import { useWinningCells } from './Hooks/useWinningCells';
 
 const PlayingField = () => {
         // Вычисление победителя
@@ -25,12 +26,13 @@ const PlayingField = () => {
     const clearSquares = useClearSquares(playSquares, setPlaySquares)
     // Победитель
     const winner = useWinner(playSquares)
+    const cells = useWinningCells(playSquares)
     return (
-        <div className='field'>
+            <div className="field">
                 <Timer winner={winner}/>
-                <Field playSquares={playSquares} playerMove={playerMove} winner={winner}/>
+                <Field playSquares={playSquares} cells={cells} playerMove={playerMove} winner={winner}/>
                 <Winner clearSquares={clearSquares} winner={winner}/>
-        </div>
+            </div>
     );
 }
 
