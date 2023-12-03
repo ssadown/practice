@@ -11,18 +11,243 @@ html, body {
   justify-content: center;
   align-items: center;
   background-color: #F6F6F6;
+  flex-direction: column;
 }
 
 .reg_container {
   position: relative;
   height: 70%;
-  width: 30%;
+  width: 25%;
   display: flex;
   flex-direction: column;
   justify-content: space-around;
   align-items: center;
   background-color: white;
   border-radius: 16px;
+}
+
+.dog-picture {
+  height: 50%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.dog-picture h1 {
+  font-size: 1.15em;
+}
+
+.form-block {
+  width: 100%;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.form-container {
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.input-form {
+  width: 80%;
+  height: 30%;
+  padding: 10px 5px;
+  border: 1px solid #DCDCDF;
+  outline: none;
+  border-radius: 8px;
+}
+
+.input-form-error {
+  border: 1px solid #e93e3e;
+}
+
+.form-elements {
+  width: 100%;
+  height: 30%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+.form-elements p {
+  align-self: flex-start;
+  margin-left: 10%;
+  color: #E93E3E;
+}
+
+.form-error-text {
+  display: none;
+}
+
+.button-help {
+  width: 80%;
+  height: 60%;
+  padding: 10px 5px;
+  border: none;
+  color: white;
+  background-color: #60C2AA;
+  border-radius: 8px;
+  transition-duration: 0.5s;
+}
+
+.button-help:hover {
+  background-color: #30816d;
+}
+
+.account-button {
+  border: 0;
+  background-color: transparent;
+  padding: 5px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.account-button:hover {
+  color: #30816d;
+}
+
+.nav-block {
+  width: 100vw;
+  height: 15vh;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #fff;
+  box-shadow: 5px 5px 5px 5px rgba(0, 0, 9, 0.08);
+}
+
+nav {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+}
+
+.logo-box, .exit-block {
+  width: 10%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.nav-list {
+  width: 80%;
+  height: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.nav-list ul {
+  list-style: none;
+  color: black;
+  display: flex;
+  width: 60%;
+  justify-content: space-around;
+  align-items: center;
+}
+.nav-list ul li {
+  font-size: 0.9em;
+  transition-duration: 0.5s;
+}
+.nav-list ul li a {
+  text-decoration: none;
+  color: black;
+}
+
+.nav-element-check {
+  border-radius: 16px;
+  background-color: #60C2AA;
+  padding: 10px 15px;
+  margin: 5px;
+  color: #fff;
+}
+.nav-element-check a {
+  color: #fff !important;
+}
+
+.field {
+  width: 40%;
+  height: 85%;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+  flex-direction: column;
+}
+
+.field-play {
+  width: 70%;
+  height: 60%;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  gap: 5px;
+  justify-content: center;
+  justify-items: stretch;
+  align-items: stretch;
+}
+
+.field-play__square {
+  background-color: transparent;
+  border: 0;
+  box-shadow: -5px 5px 5px 5px rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  cursor: pointer;
+  transition-duration: 0.5s;
+}
+
+.field-play__square:hover {
+  box-shadow: -5px 5px 5px 5px rgba(0, 0, 0, 0.27);
+}
+
+.field-play__status {
+  min-width: 100px;
+  width: 50%;
+  height: 7%;
+  display: flex;
+  justify-content: space-evenly;
+  align-items: center;
+  background-color: #373745;
+  border-radius: 16px;
+}
+.field-play__status p {
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  color: white;
+  margin: 10px;
+}
+
+.field-play__status-img {
+  margin-left: 5px;
+}
+
+.timer {
+  width: 50%;
+  height: 10%;
+  background-color: #373745;
+  border-radius: 16px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.timer h1 {
+  font-size: 3em;
+  color: white;
+}
+
+.winner {
+  background-color: green;
 }
 
 /*# sourceMappingURL=style.css.map */
