@@ -14,7 +14,7 @@ html, body
 
 .reg_container
     position: relative
-    height: 70%
+    height: unset
     width: 25%
     display: flex
     flex-direction: column
@@ -75,6 +75,7 @@ html, body
 .button-help
     width: 80%
     height: 60%
+    min-height: 50px
     padding: 10px 5px
     border: none
     color: white
@@ -260,18 +261,21 @@ nav
 .chat-container
     height: 60%
     width: 100%
+
 .chat-container__messages
     height: 90%
     width: 100%
     display: flex
     flex-direction: column
+    justify-content: flex-start
+    align-items: center
     position: relative
-.chat-container__messages-overflow
-    overflow-y: scroll
+
 .side_content-second
     display: flex
     justify-content: center
     align-items: center
+
 .chat-container__input
     height: 10%
     width: 100%
@@ -294,17 +298,42 @@ nav
         border: 1px solid #DCDCDF
         outline: 0
 
-.messages-top__fade
-    position: absolute
-    align-self: flex-start
-    box-shadow: 0px 10px 5px 5px rgba(162, 154, 154, 0.2)
+.chat-container__messages-overflow
+    overflow-y: scroll
+
+.message-container
+    width: 90%
+    height: unset
+    border-radius: 8px
+    background-color: white
+    display: flex
+    flex-direction: column
+    margin-bottom: 15px
+
+.message-container__info
     width: 100%
-    height: 1%
-    background-color: transparent
-.messages-bottom__fade
-    position: absolute
-    bottom: 0
-    box-shadow: 0px -10px 5px 5px rgba(162, 154, 154, 0.2)
+    height: 30%
+    display: flex
+    justify-content: space-between
+    max-height: 30px
+
+.fio_1
+    color: #60C2AA
+    margin-left: 10px
+.fio_2
+    color: #F3BBD0
+    margin-left: 10px
+.time
+    color: #898993
+    line-height: 15px
+    margin-right: 10px
+
+.message-container__description
     width: 100%
-    height: 1%
-    background-color: transparent
+    height: 70%
+    p
+        margin-left: 10px
+        width: 95%
+        height: unset
+        word-wrap: break-word
+        

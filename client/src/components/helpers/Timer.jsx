@@ -1,6 +1,6 @@
 import React, { useContext, useEffect } from 'react';
 import { SecondsContext } from '../../context/context';
-import { formatTime } from '../Formater/timeFormater';
+import { formatTime } from '../Formater/timerFormater';
 
 const Timer = (props) => {
     const time = useContext(SecondsContext)

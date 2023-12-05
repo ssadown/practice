@@ -7,7 +7,7 @@ import Active from './pages/Active';
 import History from './pages/History';
 import PlayerList from './pages/PlayerList';
 import Rating from './pages/Rating';
-import { AuthContext, ErrorContext, GameContext, NavContext, SecondsContext } from './context/context';
+import { AuthContext, ErrorContext, GameContext, NavContext, PlayerContext, SecondsContext } from './context/context';
 
 const App = () => {
 
@@ -16,6 +16,7 @@ const App = () => {
   const [navId, setNavId] = useState(1)
   const [xIsNext, setXIsNext] = useState(true)
   const [seconds, setSeconds] = useState(600)
+  const [player, setPlayer] = useState()
 
   useEffect(() => {
     if (localStorage.getItem('login')) {
@@ -25,6 +26,7 @@ const App = () => {
 
   return (
     !isLogin ?
+    <PlayerContext.Provider value={{player, setPlayer}}>
       <ErrorContext.Provider value={{error, setError}}>
         <AuthContext.Provider value={{isLogin, setLogin}}>
           <BrowserRouter>
@@ -35,27 +37,28 @@ const App = () => {
           </BrowserRouter>
         </AuthContext.Provider>
       </ErrorContext.Provider>
+    </PlayerContext.Provider>
     :
-  <SecondsContext.Provider value={{seconds, setSeconds}}>
-    <GameContext.Provider value={{xIsNext, setXIsNext}}>
-      <NavContext.Provider value={{navId, setNavId}}>
-        <ErrorContext.Provider value={{error, setError}}>
-          <AuthContext.Provider value={{isLogin, setLogin, error, setError}}>
-            <BrowserRouter>
-              <Routes>
-                <Route exact path="/" element={<Navigate to="/game" replace/>}/>
-                <Route exact path="/game" element={<Game/>}/>
-                <Route exact path="/active" element={<Active/>}/>
-                <Route exact path="/history" element={<History/>}/>
-                <Route exact path="/players" element={<PlayerList/>}/>
-                <Route exact path="/Rating" element={<Rating/>}/>
-              </Routes>
-            </BrowserRouter>
-          </AuthContext.Provider>
-        </ErrorContext.Provider>
-      </NavContext.Provider>
-    </GameContext.Provider>
-  </SecondsContext.Provider>
+  <PlayerContext.Provider value={{player, setPlayer}}>
+    <SecondsContext.Provider value={{seconds, setSeconds}}>
+      <GameContext.Provider value={{xIsNext, setXIsNext}}>
+        <NavContext.Provider value={{navId, setNavId}}>
+            <AuthContext.Provider value={{isLogin, setLogin, error, setError}}>
+              <BrowserRouter>
+                <Routes>
+                  <Route exact path="/" element={<Navigate to="/game" replace/>}/>
+                  <Route exact path="/game" element={<Game/>}/>
+                  <Route exact path="/active" element={<Active/>}/>
+                  <Route exact path="/history" element={<History/>}/>
+                  <Route exact path="/players" element={<PlayerList/>}/>
+                  <Route exact path="/Rating" element={<Rating/>}/>
+                </Routes>
+              </BrowserRouter>
+            </AuthContext.Provider>
+        </NavContext.Provider>
+      </GameContext.Provider>
+    </SecondsContext.Provider>
+  </PlayerContext.Provider>
   );
 }
 

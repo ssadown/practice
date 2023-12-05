@@ -10,8 +10,8 @@ class Game {
         res.json(players.rows)
     }
     async getPlayer(req, res) {
-        const player_id = req.params.id
-        const getPlayer = await db.query('SELECT * FROM players WHERE player_id = $1', [player_id])
+        const player_nickname = req.params.nickname
+        const getPlayer = await db.query('SELECT * FROM players WHERE player_nickname = $1', [player_nickname])
         res.json(getPlayer.rows[0])
     }
     async updatePlayer(req, res) {
