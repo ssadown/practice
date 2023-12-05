@@ -1,14 +1,11 @@
-import React, { useState} from 'react';
+import React, { useContext, useState} from 'react';
 import Arrow from '../images/Arrow.svg'
 import {chatFormat} from './Formater/chatFormat'
+import { PlayerContext } from '../context/context';
 
 const Chat = () => {
     const [messages, setMessages] = useState([])
-    const [selectedAuthor, setSelectedAuthor] = useState('Ваня')
-    
-    const authorChange = (e) => {
-        setSelectedAuthor(e.target.value);
-    };
+    const playerInfo = useContext(PlayerContext)
     const [mess, setMess] = useState('')
 
     const messageChange = (e) => {
@@ -18,7 +15,7 @@ const Chat = () => {
         e.preventDefault();
         setMessages((prevMessages) => [
             ...prevMessages,
-            { author: selectedAuthor, message: mess, hours: new Date().getHours(), minute: new Date().getMinutes()},
+            { author: playerInfo.player.player_nickname, message: mess, hours: new Date().getHours(), minute: new Date().getMinutes()},
         ]);
         setMess('')
     };
@@ -30,7 +27,7 @@ const Chat = () => {
                         return (
                             <div className="message-container">
                                 <div className="message-container__info">
-                                    <p className={el.author === 'Ваня' ? 'fio_1' : 'fio_2'}>{el.author}</p>
+                                    <p className={'fio_1'}>{el.author}</p>
                                     <p className="time">{chatFormat(el.hours,el.minute)}</p>
                                 </div>
                                 <div className="message-container__description">
@@ -42,10 +39,6 @@ const Chat = () => {
                 </div>
                 <div className="chat-container__input">
                     <input type='text' placeholder='Сообщение' value={mess} onChange={messageChange}/>
-                    <select value={selectedAuthor} onChange={authorChange}>
-                        <option value="Ваня">Ваня</option>
-                        <option value="Артем">Артем</option>
-                    </select>
                     <button onClick={sendMessage}><img src={Arrow} alt='Отправить'/></button>
                 </div>
             </div>

@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import InputForm from './helpers/InputForm';
 import Button from './helpers/Button';
-import { AuthContext, ErrorContext, PlayerContext } from '../context/context';
+import { AuthContext, ErrorContext, PlayerContext} from '../context/context';
 import axios from 'axios'
 
 const Form = (props) => {
@@ -35,6 +35,8 @@ const Form = (props) => {
             player_nickname: nickname,
             player_password: password
             })
+            const playerData = await axios.get(`http://localhost:5000/players/${nickname}`)
+            playerInfo.setPlayer(playerData.data)
             error.setError(false)
             isLogin.setLogin(true)
             localStorage.setItem('login', 'true')

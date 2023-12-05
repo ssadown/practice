@@ -17,6 +17,7 @@ const App = () => {
   const [xIsNext, setXIsNext] = useState(true)
   const [seconds, setSeconds] = useState(600)
   const [player, setPlayer] = useState()
+  const [allPlayers, setAllPlayers] = useState([])
 
   useEffect(() => {
     if (localStorage.getItem('login')) {
@@ -26,7 +27,7 @@ const App = () => {
 
   return (
     !isLogin ?
-    <PlayerContext.Provider value={{player, setPlayer}}>
+    <PlayerContext.Provider value={{player, setPlayer,allPlayers, setAllPlayers}}>
       <ErrorContext.Provider value={{error, setError}}>
         <AuthContext.Provider value={{isLogin, setLogin}}>
           <BrowserRouter>
@@ -39,7 +40,7 @@ const App = () => {
       </ErrorContext.Provider>
     </PlayerContext.Provider>
     :
-  <PlayerContext.Provider value={{player, setPlayer}}>
+  <PlayerContext.Provider value={{player, setPlayer,allPlayers, setAllPlayers}}>
     <SecondsContext.Provider value={{seconds, setSeconds}}>
       <GameContext.Provider value={{xIsNext, setXIsNext}}>
         <NavContext.Provider value={{navId, setNavId}}>
