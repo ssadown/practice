@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import exit from '../../images/exit.svg'
-import { AuthContext, GameContext, SecondsContext } from '../../context/context';
+import { AuthContext, GameContext, SecondsContext} from '../../context/context';
 const Exit = () => {
     const isLogin = useContext(AuthContext)
     const game = useContext(GameContext)

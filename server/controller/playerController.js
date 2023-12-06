@@ -15,8 +15,8 @@ class Game {
         res.json(getPlayer.rows[0])
     }
     async updatePlayer(req, res) {
-        const {player_id, player_figure} = req.body
-        const updatePlayer = await db.query(`UPDATE players SET player_figure = $1 where player_id = $2 RETURNING *`, [player_figure, player_id])
+        const {player_id, player_figure, player_wins, player_loss} = req.body
+        const updatePlayer = await db.query(`UPDATE players SET player_figure = $1, player_wins = $2, player_loss = $3 where player_id = $4 RETURNING *`, [player_figure, player_wins, player_loss, player_id])
         res.json(updatePlayer.rows[0])
     }
     async deletePlayer(req, res) {

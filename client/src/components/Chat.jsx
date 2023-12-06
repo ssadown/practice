@@ -15,7 +15,7 @@ const Chat = () => {
         e.preventDefault();
         setMessages((prevMessages) => [
             ...prevMessages,
-            { author: playerInfo.player.player_nickname, message: mess, hours: new Date().getHours(), minute: new Date().getMinutes()},
+            { author: playerInfo.player.player_nickname, message: mess, hours: new Date().getHours(), minute: new Date().getMinutes(), id: messages.length + 1, figure: playerInfo.player.player_figure},
         ]);
         setMess('')
     };
@@ -25,9 +25,9 @@ const Chat = () => {
                 <div className={`chat-container__messages ${messages.length > 1 ? 'chat-container__messages-overflow' : ''}`}>
                     {messages.map((el) => {
                         return (
-                            <div className="message-container">
+                            <div className="message-container" key={el.id}>
                                 <div className="message-container__info">
-                                    <p className={'fio_1'}>{el.author}</p>
+                                    <p className={playerInfo.player.player_figure === 'cross' ? 'fio_1' : 'fio_2'}>{el.author}</p>
                                     <p className="time">{chatFormat(el.hours,el.minute)}</p>
                                 </div>
                                 <div className="message-container__description">

@@ -7,4 +7,4 @@ export const GameContext = createContext(null)
 export const SecondsContext = createContext(null)
 export const PlayerContext = createContext(null)
 export const allPlayersContext = createContext(null)
-
+export const winnerContext = createContext(null)

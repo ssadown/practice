@@ -7,7 +7,7 @@ import Active from './pages/Active';
 import History from './pages/History';
 import PlayerList from './pages/PlayerList';
 import Rating from './pages/Rating';
-import { AuthContext, ErrorContext, GameContext, NavContext, PlayerContext, SecondsContext } from './context/context';
+import { AuthContext, ErrorContext, GameContext, NavContext, PlayerContext, SecondsContext, allPlayersContext, winnerContext } from './context/context';
 
 const App = () => {
 
@@ -18,6 +18,7 @@ const App = () => {
   const [seconds, setSeconds] = useState(600)
   const [player, setPlayer] = useState()
   const [allPlayers, setAllPlayers] = useState([])
+  const [winner, setWinner] = useState()
 
   useEffect(() => {
     if (localStorage.getItem('login')) {
@@ -27,7 +28,8 @@ const App = () => {
 
   return (
     !isLogin ?
-    <PlayerContext.Provider value={{player, setPlayer,allPlayers, setAllPlayers}}>
+    <allPlayersContext.Provider value={{allPlayers, setAllPlayers}}>
+    <PlayerContext.Provider value={{player, setPlayer}}>
       <ErrorContext.Provider value={{error, setError}}>
         <AuthContext.Provider value={{isLogin, setLogin}}>
           <BrowserRouter>
@@ -39,8 +41,11 @@ const App = () => {
         </AuthContext.Provider>
       </ErrorContext.Provider>
     </PlayerContext.Provider>
+    </allPlayersContext.Provider>
     :
-  <PlayerContext.Provider value={{player, setPlayer,allPlayers, setAllPlayers}}>
+    <winnerContext.Provider value={{winner, setWinner}}>
+    <allPlayersContext.Provider value={{allPlayers, setAllPlayers}}>
+    <PlayerContext.Provider value={{player, setPlayer,allPlayers, setAllPlayers}}>
     <SecondsContext.Provider value={{seconds, setSeconds}}>
       <GameContext.Provider value={{xIsNext, setXIsNext}}>
         <NavContext.Provider value={{navId, setNavId}}>
@@ -60,6 +65,8 @@ const App = () => {
       </GameContext.Provider>
     </SecondsContext.Provider>
   </PlayerContext.Provider>
+  </allPlayersContext.Provider>
+    </winnerContext.Provider>
   );
 }
 
