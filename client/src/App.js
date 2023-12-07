@@ -24,6 +24,7 @@ const App = () => {
     if (localStorage.getItem('login')) {
         setLogin(true)
     }
+    
 }, [])
 
   return (
@@ -57,7 +58,7 @@ const App = () => {
                   <Route exact path="/active" element={<Active/>}/>
                   <Route exact path="/history" element={<History/>}/>
                   <Route exact path="/players" element={<PlayerList/>}/>
-                  <Route exact path="/Rating" element={<Rating/>}/>
+                  <Route exact path="/rating" element={<Rating/>}/>
                 </Routes>
               </BrowserRouter>
             </AuthContext.Provider>
