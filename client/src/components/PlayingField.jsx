@@ -25,7 +25,7 @@ const PlayingField = () => {
     // Победитель
     const winner = useWinner(playSquares)
         // Очищение клеток
-        const clearSquares = useClearSquares(playSquares, setPlaySquares, winner)
+    const clearSquares = useClearSquares(playSquares, setPlaySquares, winner)
     const cells = useWinningCells(playSquares)
     return (
             <div className="field">
