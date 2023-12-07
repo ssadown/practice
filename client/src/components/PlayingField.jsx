@@ -22,10 +22,10 @@ const PlayingField = () => {
     ])
     // функция хода
     const playerMove = usePlayerMove(playSquares, setPlaySquares)
-    // Очищение клеток
-    const clearSquares = useClearSquares(playSquares, setPlaySquares)
     // Победитель
     const winner = useWinner(playSquares)
+        // Очищение клеток
+        const clearSquares = useClearSquares(playSquares, setPlaySquares, winner)
     const cells = useWinningCells(playSquares)
     return (
             <div className="field">

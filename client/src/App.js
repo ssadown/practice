@@ -18,7 +18,7 @@ const App = () => {
   const [seconds, setSeconds] = useState(600)
   const [player, setPlayer] = useState()
   const [allPlayers, setAllPlayers] = useState([])
-  const [winner, setWinner] = useState()
+  const [winner, setWinner] = useState(false)
 
   useEffect(() => {
     if (localStorage.getItem('login')) {

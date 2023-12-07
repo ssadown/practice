@@ -7,8 +7,12 @@ import axios from 'axios'
 const Winner = (props) => {
     const game = useContext(GameContext)
     const allPlayers = useContext(allPlayersContext)
-    const winner = useContext(winnerContext)
+    const win = useContext(winnerContext)
     useEffect(() => {
+        if (props.winner) {
+            win.setWinner(true)
+        }
+
         const addWin = async () => {
             for (let i = 0; i < allPlayers.allPlayers.length; i++) {
                 const currentPlayer = allPlayers.allPlayers[i]
@@ -20,16 +24,57 @@ const Winner = (props) => {
                             player_wins: currentPlayer.player_wins + 1,
                             player_loss: currentPlayer.player_loss
                         })
+                        allPlayers.allPlayers[i].player_wins += 1
+                        console.log('Отправил!')
+                    } catch (e) {
+                        console.log(e)
+                    }
+                } else if (props.winner === cross && currentPlayer.player_figure === 'circle') {
+                    try {
+                        await axios.put('http://localhost:5000/players', {
+                            player_id: currentPlayer.player_id,
+                            player_figure: currentPlayer.player_figure,
+                            player_wins: currentPlayer.player_wins,
+                            player_loss: currentPlayer.player_loss + 1
+                        })
+                        allPlayers.allPlayers[i].player_loss += 1
+                        console.log('Отправил!')
+                    } catch (e) {
+                        console.log(e)
+                    }
+                } else if (props.winner === circle && currentPlayer.player_figure === 'cross') {
+                    try {
+                        await axios.put('http://localhost:5000/players', {
+                            player_id: currentPlayer.player_id,
+                            player_figure: currentPlayer.player_figure,
+                            player_wins: currentPlayer.player_wins,
+                            player_loss: currentPlayer.player_loss +1
+                        })
+                        allPlayers.allPlayers[i].player_loss += 1
+                        console.log('Отправил!')
+                    } catch (e) {
+                        console.log(e)
+                    }
+                } else if (props.winner === circle && currentPlayer.player_figure === 'circle') {
+                    try {
+                        await axios.put('http://localhost:5000/players', {
+                            player_id: currentPlayer.player_id,
+                            player_figure: currentPlayer.player_figure,
+                            player_wins: currentPlayer.player_wins + 1,
+                            player_loss: currentPlayer.player_loss
+                        })
+                        allPlayers.allPlayers[i].player_wins += 1
+                        console.log('Отправил!')
                     } catch (e) {
                         console.log(e)
                     }
                 }
             }
         }
-        if (winner.winner !== null) {
+        if (win.winner) {
             addWin()
         }
-    }, [props.winner, allPlayers.allPlayers, winner.winner])
+    }, [props.winner, allPlayers.allPlayers, win.winner, win.setWinner, win])
     return (
         <div className="field-play__status" onClick={props.clearSquares}>
             {props.winner && props.winner !== 'draw' && <p> Победитель <div className="field-play__status-img"><img src={props.winner} width={30} height={30} alt='ход'/></div></p>}

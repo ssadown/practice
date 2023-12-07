@@ -1,9 +1,9 @@
 import { useContext } from "react";
-import { SecondsContext, winnerContext } from "../../context/context";
+import { SecondsContext} from "../../context/context";
 
 export const useWinner = (squares) => {
     const time = useContext(SecondsContext)
-    const winner = useContext(winnerContext)
+
     // Все возможные комбинации выигрышных линий
     const lines = [
         [0, 1, 2],
