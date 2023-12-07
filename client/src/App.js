@@ -10,7 +10,7 @@ import Rating from './pages/Rating';
 import { AuthContext, ErrorContext, GameContext, NavContext, PlayerContext, SecondsContext, allPlayersContext, winnerContext } from './context/context';
 
 const App = () => {
-
+// МЭЙН
   const [isLogin, setLogin] = useState(false)
   const [error, setError] = useState(false)
   const [navId, setNavId] = useState(1)
