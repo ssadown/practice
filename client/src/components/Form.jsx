@@ -49,9 +49,14 @@ const Form = (props) => {
                         player_loss: currentPlayer.player_loss
                     })
                     const playerDataFigure = await axios.get(`http://localhost:5000/players/${allPlayers.allPlayers[i].player_nickname}`)
+                    await axios.post('http://localhost:5000/active/activeplayers', {
+                        player_id: playerDataFigure.data.player_id,
+                        player_name: playerDataFigure.data.player_name,
+                        player_nickname: playerDataFigure.data.player_nickname,
+                        player_figure: playerDataFigure.data.player_figure
+                        })
                     allPlayers.allPlayers[i].player_figure = playerDataFigure.data.player_figure
                     playerInfo.setPlayer(playerDataFigure.data)
-                    
                 } else if (i % 2 === 0) {
                     await axios.put(`http://localhost:5000/players`, {
                         player_id: currentPlayer.player_id,
@@ -78,7 +83,14 @@ const Form = (props) => {
             error.setError(false)
             isLogin.setLogin(true)
             localStorage.setItem('login', 'true')
+            axios.post('http://localhost:5000/active/activeplayers', {
+                player_id: playerInfo.player.player_id,
+                player_name: playerInfo.player.player_name,
+                player_nickname: playerInfo.player.player_nickname,
+                player_figure: playerInfo.player.player_figure
+                })
         } catch (e) {
+            console.log(e)
             error.setError(true)
         }
     }
@@ -134,6 +146,12 @@ const Form = (props) => {
             error.setError(false)
             isLogin.setLogin(true)
             localStorage.setItem('login', 'true')
+            axios.post('http://localhost:5000/active/activeplayers', {
+                player_id: playerInfo.player.player_id,
+                player_name: playerInfo.player.player_name,
+                player_nickname: playerInfo.player.player_nickname,
+                player_figure: playerInfo.player.player_figure
+                })
         } else {
             error.setError(true)
             return
