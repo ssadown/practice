@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import Winner from './helpers/Winner';
 import Field from './helpers/Field';
 import Timer from './helpers/Timer';
@@ -20,6 +20,7 @@ const PlayingField = () => {
         {id: 8, figure: null},
         {id: 9, figure: null},
     ])
+    const [ws, setWs] = useState(null)
     // функция хода
     const playerMove = usePlayerMove(playSquares, setPlaySquares)
     // Победитель
@@ -27,6 +28,13 @@ const PlayingField = () => {
         // Очищение клеток
     const clearSquares = useClearSquares(playSquares, setPlaySquares, winner)
     const cells = useWinningCells(playSquares)
+    useEffect(() => {
+        const newWs = new WebSocket("ws://localhost:5000")
+
+        newWs.onopen = () => {
+            console.log('WebSocket connected')
+        }
+    })
     return (
             <div className="field">
                 <Timer winner={winner}/>
