@@ -16,7 +16,7 @@ const App = () => {
   const [navId, setNavId] = useState(1)
   const [xIsNext, setXIsNext] = useState(true)
   const [seconds, setSeconds] = useState(600)
-  const [player, setPlayer] = useState()
+  const [player, setPlayer] = useState([])
   const [allPlayers, setAllPlayers] = useState([])
   const [winner, setWinner] = useState(false)
 
@@ -46,7 +46,7 @@ const App = () => {
     :
     <winnerContext.Provider value={{winner, setWinner}}>
     <allPlayersContext.Provider value={{allPlayers, setAllPlayers}}>
-    <PlayerContext.Provider value={{player, setPlayer,allPlayers, setAllPlayers}}>
+    <PlayerContext.Provider value={{player, setPlayer}}>
     <SecondsContext.Provider value={{seconds, setSeconds}}>
       <GameContext.Provider value={{xIsNext, setXIsNext}}>
         <NavContext.Provider value={{navId, setNavId}}>

@@ -4,6 +4,7 @@ const app = express()
 const sql = require('./db')
 const router = require('./router/router')
 const routerActiveRouter = require('./router/routerActiveRouter')
+const xRouter = require('./router/xRouter')
 const cors = require('cors')
 const http = require('http');
 const PORT = process.env.PORT || 4000
@@ -13,6 +14,7 @@ const PORT = process.env.PORT || 4000
 app.use(express.json())
 app.use('/', router)
 app.use('/active', routerActiveRouter)
+app.use('/next', xRouter)
 
 app.use(cors())
 app.use((req, res, next) => {

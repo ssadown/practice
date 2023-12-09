@@ -8,11 +8,12 @@ const Exit = () => {
     const time = useContext(SecondsContext)
     const playerInfo = useContext(PlayerContext)
     const exitLogin = () => {
-        axios.delete(`http://localhost:5000/active/activeplayers/${playerInfo.player.player_id}`)
         isLogin.setLogin(false)
         game.setXIsNext(true)
         time.setSeconds(600)
         localStorage.removeItem('login', 'true')
+        axios.delete(`http://localhost:5000/active/activeplayers/${playerInfo.player[0].player_id}`)
+        playerInfo.player.shift()
     }
     return (
         <div className='exit-block'>
