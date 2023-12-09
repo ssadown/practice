@@ -13,6 +13,7 @@ const Exit = () => {
         time.setSeconds(600)
         localStorage.removeItem('login', 'true')
         axios.delete(`http://localhost:5000/active/activeplayers/${playerInfo.player[0].player_id}`)
+        axios.delete(`http://localhost:5000/chat/message`)
         playerInfo.player.shift()
     }
     return (

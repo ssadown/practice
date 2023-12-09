@@ -1,7 +1,7 @@
 import React, { useContext, useState } from 'react';
 import InputForm from './helpers/InputForm';
 import Button from './helpers/Button';
-import { AuthContext, ErrorContext, PlayerContext, allPlayersContext} from '../context/context';
+import { AuthContext, ErrorContext, PlayerContext} from '../context/context';
 import axios from 'axios'
 
 const Form = (props) => {
@@ -11,7 +11,7 @@ const Form = (props) => {
     const [nickname, setNickname] = useState('')
     const [password, setPassword] = useState('')
     const playerInfo = useContext(PlayerContext)
-    const allPlayers = useContext(allPlayersContext)
+
 
     const changeFio = (e) => {
         console.log(fio)
@@ -38,51 +38,27 @@ const Form = (props) => {
             player_password: password
             })
             const playerData = await axios.get(`http://localhost:5000/players/${nickname}`)
-            playerInfo.setPlayer(playerData.data)
-            allPlayers.allPlayers.push(playerData.data) 
-            for (let i = 0; i < allPlayers.allPlayers.length; i++) {
-                const currentPlayer = allPlayers.allPlayers[i]
-                if (i === 0) {
-                    await axios.put(`http://localhost:5000/players`, {
-                        player_id: currentPlayer.player_id,
-                        player_figure: 'cross',
-                        player_wins: currentPlayer.player_wins,
-                        player_loss: currentPlayer.player_loss
-                    })
-                    const playerDataFigure = await axios.get(`http://localhost:5000/players/${allPlayers.allPlayers[i].player_nickname}`)
-                    allPlayers.allPlayers[i].player_figure = playerDataFigure.data.player_figure
-                    playerInfo.setPlayer(playerDataFigure.data)
-                } else if (i % 2 === 0) {
-                    await axios.put(`http://localhost:5000/players`, {
-                        player_id: currentPlayer.player_id,
-                        player_figure: 'cross',
-                        player_wins: currentPlayer.player_wins,
-                        player_loss: currentPlayer.player_loss
-                    })
-                    const playerDataFigure = await axios.get(`http://localhost:5000/players/${allPlayers.allPlayers[i].player_nickname}`)
-                    allPlayers.allPlayers[i].player_figure = playerDataFigure.data.player_figure
-                    playerInfo.setPlayer(playerDataFigure.data)
-                } else {
-                    await axios.put(`http://localhost:5000/players`, {
-                        player_id: currentPlayer.player_id,
-                        player_figure: 'circle',
-                        player_wins: currentPlayer.player_wins,
-                        player_loss: currentPlayer.player_loss
-                    })
-                    const playerDataFigure = await axios.get(`http://localhost:5000/players/${allPlayers.allPlayers[i].player_nickname}`)
-                    allPlayers.allPlayers[i].player_figure = playerDataFigure.data.player_figure
-                    playerInfo.setPlayer(playerDataFigure.data)
-                }
-            }
-            console.log(allPlayers.allPlayers)
+            const xIsNext = await axios.get(`http://localhost:5000/next/xisnext`)
+            await axios.put(`http://localhost:5000/players/`, {
+                player_id: playerData.data.player_id,
+                player_figure: xIsNext.data[0].x_is_next === true ? 'cross' : 'circle',
+                player_wins: playerData.data.player_wins,
+                player_loss: playerData.data.player_loss
+            })
+            await axios.put(`http://localhost:5000/next/xisnext`, {
+                x_is_next: !xIsNext.data[0].x_is_next
+            })
+            const playerDataFigure = await axios.get(`http://localhost:5000/players/${nickname}`)
+            console.log(playerDataFigure.data)
+            playerInfo.player.push(playerDataFigure.data)
             error.setError(false)
             isLogin.setLogin(true)
             localStorage.setItem('login', 'true')
-            axios.post('http://localhost:5000/active/activeplayers', {
-                player_id: playerInfo.player.player_id,
-                player_name: playerInfo.player.player_name,
-                player_nickname: playerInfo.player.player_nickname,
-                player_figure: playerInfo.player.player_figure
+            await axios.post('http://localhost:5000/active/activeplayers', {
+                player_id: playerInfo.player[0].player_id,
+                player_name: playerInfo.player[0].player_name,
+                player_nickname: playerInfo.player[0].player_nickname,
+                player_figure: playerInfo.player[0].player_figure
                 })
         } catch (e) {
             console.log(e)
