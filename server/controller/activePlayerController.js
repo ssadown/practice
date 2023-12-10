@@ -1,8 +1,8 @@
 const db = require('../db')
 class activePlayer {
     async addPlayer(req, res) {
-        const {player_id, player_name, player_nickname, player_figure} = req.body
-        const newPlayer = await db.query(`INSERT INTO activeplayers (player_id, player_name, player_nickname, player_figure) VALUES ($1, $2, $3, $4) RETURNING *`, [player_id, player_name, player_nickname, player_figure])
+        const {player_id, player_name, player_nickname, player_figure, player_wins, player_loss} = req.body
+        const newPlayer = await db.query(`INSERT INTO activeplayers (player_id, player_name, player_nickname, player_figure, player_wins, player_loss) VALUES ($1, $2, $3, $4, $5, $6) RETURNING *`, [player_id, player_name, player_nickname, player_figure, player_wins, player_loss])
         res.json(newPlayer.rows[0])
     }
     async getPlayer(req, res) {

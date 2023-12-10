@@ -58,8 +58,10 @@ const Form = (props) => {
                 player_id: playerInfo.player[0].player_id,
                 player_name: playerInfo.player[0].player_name,
                 player_nickname: playerInfo.player[0].player_nickname,
-                player_figure: playerInfo.player[0].player_figure
-                })
+                player_figure: playerInfo.player[0].player_figure,
+                player_wins: playerInfo.player[0].player_wins,
+                player_loss: playerInfo.player[0].player_loss
+            })
         } catch (e) {
             console.log(e)
             error.setError(true)
@@ -96,7 +98,9 @@ const Form = (props) => {
                     player_id: playerInfo.player[0].player_id,
                     player_name: playerInfo.player[0].player_name,
                     player_nickname: playerInfo.player[0].player_nickname,
-                    player_figure: playerInfo.player[0].player_figure
+                    player_figure: playerInfo.player[0].player_figure,
+                    player_wins: playerInfo.player[0].player_wins,
+                    player_loss: playerInfo.player[0].player_loss
                 })
             } else {
                 error.setError(true)

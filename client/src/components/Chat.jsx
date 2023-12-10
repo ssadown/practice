@@ -1,8 +1,8 @@
-import React, { useContext, useState} from 'react';
+import React, { useContext, useEffect, useState} from 'react';
 import Arrow from '../images/Arrow.svg'
-import {chatFormat} from './Formater/chatFormat'
 import { PlayerContext } from '../context/context';
 import axios from 'axios';
+
 
 const Chat = () => {
     const [messages, setMessages] = useState([])
@@ -15,21 +15,43 @@ const Chat = () => {
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:5000/chat/message`, {
-                mess_id: messages.length + 1,
+            await axios.post(`http://localhost:5000/chat/message/`, {
                 author: playerInfo.player[0].player_nickname,
                 mess_time: `${new Date().getHours()}:${new Date().getMinutes()}`,
                 mess_description: mess,
                 player_figure: playerInfo.player[0].player_figure
             })
-            const messagesData = await axios.get(`http://localhost:5000/chat/message/${messages.length + 1}`)
-            messages.push(messagesData.data)
+            const messagesData = await axios.get(`http://localhost:5000/chat/message/`)
+            setMessages(messagesData.data)
             setMess('')
             console.log(messages)
         } catch (e) {
             console.log(e)
         }
     };
+    useEffect(() => {
+        const getMessages = async () => {
+            try {
+            const messagesData = await axios.get(
+                'http://localhost:5000/chat/message/'
+            );
+            setMessages(messagesData.data);
+            } catch (e) {
+            console.log(e);
+            }
+        };
+    
+        // Получить сообщения при загрузке страницы
+        getMessages();
+    
+        // Установить интервал для получения сообщений в режиме реального времени
+        const interval = setInterval(getMessages, 500);
+    
+        // Отписаться от интервала при размонтировании компонента
+        return () => {
+            clearInterval(interval);
+        };
+        }, []);
     return (
         <div className='side_content side_content-second'>
             <div className="chat-container">
@@ -38,7 +60,7 @@ const Chat = () => {
                         return (
                             <div className="message-container" key={el.mess_id}>
                                 <div className="message-container__info">
-                                    <p className={playerInfo.player.player_figure === 'cross' ? 'fio_1' : 'fio_2'}>{el.author}</p>
+                                    <p className={el.player_figure === 'cross' ? 'fio_1' : 'fio_2'}>{el.author}</p>
                                     <p className="time">{el.mess_time}</p>
                                 </div>
                                 <div className="message-container__description">

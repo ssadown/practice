@@ -8,6 +8,7 @@ import History from './pages/History';
 import PlayerList from './pages/PlayerList';
 import Rating from './pages/Rating';
 import { AuthContext, ErrorContext, GameContext, NavContext, PlayerContext, SecondsContext, allPlayersContext, winnerContext } from './context/context';
+import axios from 'axios';
 
 const App = () => {
 
