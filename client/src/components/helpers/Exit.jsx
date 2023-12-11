@@ -5,12 +5,13 @@ import axios from 'axios';
 const Exit = () => {
     const isLogin = useContext(AuthContext)
     const game = useContext(GameContext)
-    const time = useContext(SecondsContext)
     const playerInfo = useContext(PlayerContext)
-    const exitLogin = () => {
+    const exitLogin = async () => {
         isLogin.setLogin(false)
         game.setXIsNext(true)
-        time.setSeconds(600)
+        await axios.put('http://localhost:5000/time/timer/', {
+            seconds: 600
+        })
         localStorage.removeItem('login', 'true')
         localStorage.removeItem('user', `${playerInfo.player.player_nickname}`)
         axios.delete(`http://localhost:5000/active/activeplayers/${playerInfo.player[0].player_id}`)

@@ -14,7 +14,6 @@ const Winner = (props) => {
                 const activePlayersData = await axios.get('http://localhost:5000/active/activeplayers');
                 // Обновление состояния активных игроков
                 setActivePlayers(activePlayersData.data);
-                // console.log(activePlayers)
             } catch (e) {
                 console.log(e);
             }
@@ -121,7 +120,7 @@ const Winner = (props) => {
         if (win.winner) {
             addWin()
         }
-    }, [props.winner, win])
+    }, [props.winner, win,])
     return (
         <div className="field-play__status" onClick={props.clearSquares}>
             {props.winner && props.winner !== 'draw' && <p> Победитель <div className="field-play__status-img"><img src={props.winner} width={30} height={30} alt='ход'/></div></p>}

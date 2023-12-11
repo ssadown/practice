@@ -1,9 +1,23 @@
-import { useContext } from "react";
+import { useContext, useEffect, useState } from "react";
 import { SecondsContext} from "../../context/context";
+import axios from "axios";
 
 export const useWinner = (squares) => {
     const time = useContext(SecondsContext)
+    const [seconds, setSeconds] = useState(0);
+    useEffect(() => {
+        const fetchTimerValue = async () => {
+            try {
+                const timerValue = await axios.get('http://localhost:5000/time/timer/'); 
+                setSeconds(timerValue.data[0].seconds);
+                console.log(seconds)
+            } catch (error) {
+                console.log(error);
+            }
+        };
 
+        fetchTimerValue();
+    }, []);
     // Все возможные комбинации выигрышных линий
     const lines = [
         [0, 1, 2],
@@ -28,7 +42,7 @@ export const useWinner = (squares) => {
     }
     // Проверяем на ничью
     let isDraw = true;
-    if (time.seconds === 0) {
+    if (seconds === 0) {
         return 'draw'
     }
     for (let i = 0; i < squares.length; i++) {
