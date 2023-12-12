@@ -1,9 +1,7 @@
-import { useContext, useEffect, useState } from "react";
-import { SecondsContext} from "../../context/context";
+import { useEffect, useState } from "react";
 import axios from "axios";
 
 export const useWinner = (squares) => {
-    const time = useContext(SecondsContext)
     const [seconds, setSeconds] = useState(0);
     useEffect(() => {
         const fetchTimerValue = async () => {
@@ -17,7 +15,7 @@ export const useWinner = (squares) => {
         };
 
         fetchTimerValue();
-    }, []);
+    }, [seconds]);
     // Все возможные комбинации выигрышных линий
     const lines = [
         [0, 1, 2],

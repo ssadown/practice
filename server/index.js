@@ -11,16 +11,6 @@ const timerRouter = require('./router/timerRouter')
 const winnerRouter = require('./router/winnerRouter')
 const PORT = process.env.PORT || 4000
 
-
-
-app.use(express.json())
-app.use('/', router)
-app.use('/active', routerActiveRouter)
-app.use('/next', xRouter)
-app.use('/chat', chatRouter)
-app.use('/time', timerRouter)
-app.use('/win', winnerRouter)
-
 app.use(cors())
 app.use((req, res, next) => {
     res.header('Access-Control-Allow-Origin', 'http://localhost:3000');
@@ -36,6 +26,14 @@ app.use((req, res, next) => {
     res.send();
     });
     
+
+app.use(express.json())
+app.use('/', router)
+app.use('/active', routerActiveRouter)
+app.use('/next', xRouter)
+app.use('/chat', chatRouter)
+app.use('/time', timerRouter)
+app.use('/win', winnerRouter)
 
 app.listen(PORT, () => console.log(`Сервер стартовал на ${PORT} порту`))
 const connection = async () => {

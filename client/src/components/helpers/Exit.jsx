@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
 import exit from '../../images/exit.svg'
-import { AuthContext, GameContext, PlayerContext, SecondsContext} from '../../context/context';
+import { AuthContext, GameContext, PlayerContext} from '../../context/context';
 import axios from 'axios';
 const Exit = () => {
     const isLogin = useContext(AuthContext)

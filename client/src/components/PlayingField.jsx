@@ -8,7 +8,6 @@ import { useClearSquares } from './Hooks/useClearSquares';
 import { useWinningCells } from './Hooks/useWinningCells';
 
 const PlayingField = () => {
-        // Вычисление победителя
     const [playSquares, setPlaySquares] = useState([
         {id: 1, figure: null},
         {id: 2, figure: null},
