@@ -31,11 +31,11 @@ export const useWinner = (squares) => {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (
-            squares[a].figure &&
-            squares[a].figure === squares[b].figure &&
-            squares[a].figure === squares[c].figure
+            squares[a].square_figure &&
+            squares[a].square_figure === squares[b].square_figure &&
+            squares[a].square_figure === squares[c].square_figure
         ) {
-        return squares[a].figure; // Возвращаем символ победителя
+        return squares[a].square_figure; // Возвращаем символ победителя
         }
     }
     // Проверяем на ничью
@@ -44,7 +44,7 @@ export const useWinner = (squares) => {
         return 'draw'
     }
     for (let i = 0; i < squares.length; i++) {
-        if (!squares[i].figure) {
+        if (!squares[i].square_figure) {
             isDraw = false;
             break;
         }

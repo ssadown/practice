@@ -7,7 +7,7 @@ export const useClearSquares = (playSquares,setPlaySquares) => {
     const win = useContext(winnerContext)
     const clear = async () => {
         try {
-            const newPlaySquares = playSquares.map(square => ({ ...square, figure: null }));
+            const newPlaySquares = playSquares.map(square => ({ ...square, square_figure: null }));
             setPlaySquares(newPlaySquares);
             game.setXIsNext(true);
             await axios.put('http://localhost:5000/time/timer/', {

@@ -15,18 +15,20 @@ const Chat = () => {
     const sendMessage = async (e) => {
         e.preventDefault();
         try {
-            await axios.post(`http://localhost:5000/chat/message/`, {
-                author: playerInfo.player[0].player_nickname,
-                mess_time: `${new Date().getHours()}:${new Date().getMinutes()}`,
-                mess_description: mess,
-                player_figure: playerInfo.player[0].player_figure
-            })
+            if (mess !== '') {
+                await axios.post(`http://localhost:5000/chat/message/`, {
+                    author: playerInfo.player[0].player_nickname,
+                    mess_time: `${new Date().getHours()}:${new Date().getMinutes()}`,
+                    mess_description: mess,
+                    player_figure: playerInfo.player[0].player_figure
+                })
+            }
             const messagesData = await axios.get(`http://localhost:5000/chat/message/`)
             setMessages(messagesData.data)
             setMess('')
             console.log(messages)
-        } catch (e) {
-            console.log(e)
+        } catch (error) {
+            console.log(error)
         }
     };
     useEffect(() => {

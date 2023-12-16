@@ -12,9 +12,9 @@ export const useWinningCells = (squares) => {
     for (let i = 0; i < lines.length; i++) {
         const [a, b, c] = lines[i];
         if (
-            squares[a].figure &&
-            squares[a].figure === squares[b].figure &&
-            squares[a].figure === squares[c].figure
+            squares[a].square_figure &&
+            squares[a].square_figure === squares[b].square_figure &&
+            squares[a].square_figure === squares[c].square_figure
         ) {
         return [a, b, c];
         }

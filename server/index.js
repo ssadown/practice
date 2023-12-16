@@ -9,6 +9,7 @@ const cors = require('cors')
 const chatRouter = require('./router/chatRouter')
 const timerRouter = require('./router/timerRouter')
 const winnerRouter = require('./router/winnerRouter')
+const squareRouter = require('./router/squareRouter')
 const PORT = process.env.PORT || 4000
 
 app.use(cors())
@@ -34,6 +35,7 @@ app.use('/next', xRouter)
 app.use('/chat', chatRouter)
 app.use('/time', timerRouter)
 app.use('/win', winnerRouter)
+app.use('/square', squareRouter)
 
 app.listen(PORT, () => console.log(`Сервер стартовал на ${PORT} порту`))
 const connection = async () => {

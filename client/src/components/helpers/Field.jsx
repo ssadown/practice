@@ -7,7 +7,7 @@ const Field = (props) => {
         <div className="field-play">
             {props.playSquares.map((el) => {
                 return (
-                    <Square onclick={() => props.playerMove(el.id - 1)} cells={cells} winner={props.winner} figure={el.figure} id={el.id} key={el.id}/>    
+                    <Square onclick={() => props.playerMove(el.square_id - 1)} cells={cells} winner={props.winner} figure={el.square_figure} id={el.square_id} key={el.square_id}/>    
                 )
             })}
         </div>
