@@ -16,6 +16,12 @@ export const useClearSquares = (playSquares,setPlaySquares) => {
             await axios.put('http://localhost:5000/win/winner/', {
                 winner: false
             }, () => {console.log('поменял')})
+            for (let i = 1; i < 10; i++) {
+                await axios.put('http://localhost:5000/square/squares', {
+                    square_figure: null,
+                    square_id: i
+                })
+            }
             win.setWinner(false)
         } catch (e) {
             console.log(e)

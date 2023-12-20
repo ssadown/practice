@@ -12,6 +12,12 @@ const Exit = () => {
         await axios.put('http://localhost:5000/time/timer/', {
             seconds: 600
         })
+        for (let i = 1; i < 9; i++) {
+            await axios.put('http://localhost:5000/square/squares', {
+                square_figure: null,
+                square_id: i
+            })
+        }
         localStorage.removeItem('login', 'true')
         localStorage.removeItem('user', `${playerInfo.player.player_nickname}`)
         axios.delete(`http://localhost:5000/active/activeplayers/${playerInfo.player[0].player_id}`)

@@ -20,18 +20,7 @@ const PlayingField = () => {
         {square_id: 8, square_figure: null},
         {square_id: 9, square_figure: null},
     ])
-    // useEffect( () => {
-    //     try {
-    //         const getSquares = async () => {
-    //             const squaresData = await axios.get('http://localhost:5000/square/squares')
-    //             setPlaySquares(squaresData)
-    //         }
-    //         getSquares()
-    //     } catch (e) {
-    //         console.log(e)
-    //     }
-    //     console.log(playSquares)
-    // }, [])
+
     // функция хода
     const playerMove = usePlayerMove(playSquares, setPlaySquares)
     // Победитель
