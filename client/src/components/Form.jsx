@@ -112,7 +112,7 @@ const Form = (props) => {
         }
     }
     // рендер
-    if (props.reg === true) {
+    if (props.isReg === true) {
         return (
             <div className='form-block' onSubmit={register}>
                 <form className='form-container'>

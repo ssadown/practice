@@ -2,17 +2,17 @@ import React, { useEffect, useState } from 'react';
 import DogPicture from '../components/helpers/DogPicture';
 import Form from '../components/Form';
 const Registration = () => {
-    const [reg, setReg] = useState(true)
+    const [isReg, setReg] = useState(true)
     useEffect(() => {
         
-    },[reg])
-    if (reg) {
+    },[isReg])
+    if (isReg) {
         return (
             <div>
                 <div className="wrapper">
                     <div className="reg_container">
                         <DogPicture/>
-                        <Form reg={reg}/>
+                        <Form isReg={isReg}/>
                         <button className='account-button' onClick={() => {setReg(false)}}>Есть аккаунт</button>
                     </div>
                 </div>
@@ -24,7 +24,7 @@ const Registration = () => {
             <div className="wrapper">
                 <div className="reg_container">
                     <DogPicture/>
-                    <Form reg={reg}/>
+                    <Form isReg={isReg}/>
                     <button className='account-button' onClick={() => {setReg(true)}}>Зарегистрироваться</button>
                 </div>
             </div>
